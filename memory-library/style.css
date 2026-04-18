@@ -1,26 +1,45 @@
 body {
-    font-family: 'Arial';
     margin: 0;
-    background: #f5e9ff;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(180deg, #0d0d0d, #1a001f);
+    color: white;
     text-align: center;
     overflow-x: hidden;
+}
+
+h1, h2 {
+    color: #d9a3ff;
+    text-shadow: 0 0 10px #a020f0;
 }
 
 .center {
     margin-top: 120px;
 }
 
-input, button {
+input {
     padding: 12px;
     border-radius: 10px;
     border: none;
-    margin: 10px;
+    width: 200px;
     font-size: 16px;
 }
 
-button {
-    background: #b57edc;
+button, .btn {
+    padding: 12px 18px;
+    margin: 10px;
+    border-radius: 12px;
+    border: none;
+    background: #a020f0;
     color: white;
+    font-size: 15px;
+    box-shadow: 0 0 15px #a020f0;
+    text-decoration: none;
+    display: inline-block;
+}
+
+button:hover, .btn:hover {
+    background: #ff004f;
+    box-shadow: 0 0 20px #ff004f;
 }
 
 .albums {
@@ -32,11 +51,11 @@ button {
 
 .album {
     padding: 15px;
-    background: white;
+    background: #1a1a1a;
     border-radius: 12px;
+    color: white;
     text-decoration: none;
-    color: black;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 0 15px #a020f0;
 }
 
 .gallery {
@@ -47,47 +66,39 @@ button {
 
 .polaroid {
     background: white;
-    width: 160px;
+    color: black;
+    width: 150px;
     margin: 10px;
     padding: 10px;
-    box-shadow: 0 6px 10px rgba(0,0,0,0.25);
     transform: rotate(-2deg);
+    box-shadow: 0 0 15px #ff004f;
+    border-radius: 6px;
 }
 
 .polaroid img {
     width: 100%;
 }
 
-.polaroid p {
-    font-size: 13px;
-}
-
-.next {
-    display: block;
-    margin: 30px;
-    font-weight: bold;
-}
-
-.letterPage {
-    padding: 20px;
+.next, .back {
+    margin-top: 30px;
+    display: inline-block;
 }
 
 .letter {
-    background: white;
+    background: #1a1a1a;
     padding: 20px;
     border-radius: 12px;
     text-align: left;
-    line-height: 1.6;
+    line-height: 1.7;
+    box-shadow: 0 0 15px #a020f0;
 }
 
 /* floating hearts */
 .heart {
     position: fixed;
-    color: pink;
+    color: #ff004f;
     animation: float 6s linear infinite;
+    font-size: 18px;
 }
 
-@keyframes float {
-    from {transform: translateY(100vh);}
-    to {transform: translateY(-10vh);}
-}
+@keyframes float
