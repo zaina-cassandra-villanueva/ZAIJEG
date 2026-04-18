@@ -1,23 +1,213 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Our Memory Library</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Our Love Album 💜</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI, sans-serif;}
+
+body{
+    background: radial-gradient(circle at top, #1a001f, #000);
+    color:white;
+    overflow-x:hidden;
+}
+
+/* SCREENS */
+.screen{display:none;min-height:100vh;padding:20px;text-align:center;}
+.active{display:block;}
+
+/* PASSWORD */
+.password-box{
+    margin-top:40vh;
+}
+input{
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    width:200px;
+    text-align:center;
+}
+button{
+    margin-top:10px;
+    padding:12px 20px;
+    border:none;
+    border-radius:10px;
+    background:#6a00ff;
+    color:white;
+    font-weight:bold;
+    box-shadow:0 0 15px #a020f0;
+    cursor:pointer;
+}
+button:hover{box-shadow:0 0 25px #ff004c;}
+
+/* TITLE */
+.title{
+    font-size:28px;
+    margin:20px 0;
+    text-shadow:0 0 15px #a020f0;
+}
+
+/* MENU BUTTONS */
+.menu-btn{
+    width:90%;
+    margin:15px auto;
+    padding:18px;
+    border-radius:20px;
+    background:#111;
+    border:2px solid #6a00ff;
+    box-shadow:0 0 20px #6a00ff;
+    font-size:18px;
+}
+
+/* BACK */
+.back{
+    position:fixed;
+    top:15px;
+    left:15px;
+    background:#ff004c;
+    box-shadow:0 0 15px #ff004c;
+}
+
+/* GALLERY */
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+    margin-top:20px;
+}
+.gallery img{
+    width:100%;
+    border-radius:12px;
+    border:3px solid white;
+    box-shadow:0 0 15px #a020f0;
+}
+
+/* LETTER */
+.letter{
+    margin-top:20px;
+    line-height:1.6;
+    text-align:left;
+    background:#111;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 0 20px #a020f0;
+}
+
+/* HEARTS */
+.hearts{
+    position:fixed;
+    bottom:0;
+    width:100%;
+    font-size:22px;
+    color:red;
+    animation:float 5s linear infinite;
+}
+@keyframes float{
+    0%{transform:translateY(0);}
+    50%{transform:translateY(-10px);}
+    100%{transform:translateY(0);}
+}
+</style>
 </head>
-<body class="center">
 
-<h1>Happy Birthday ❤️</h1>
-<p>Enter the password to open our memories</p>
-
-<input type="password" id="pass" placeholder="Birthday (MMDD)">
-<button onclick="checkPass()">Open</button>
-
-<script src="script.js"></script>
-</body>
+<body>
 
 <audio id="bgMusic" loop>
-    <source src="music.mp3" type="audio/mpeg">
+    <source src="song.mp3" type="audio/mpeg">
 </audio>
 
+<!-- PASSWORD SCREEN -->
+<div id="passwordScreen" class="screen active">
+    <div class="password-box">
+        <h2>Enter Password 💜</h2>
+        <input type="password" id="pass"/>
+        <br>
+        <button onclick="checkPass()">Open</button>
+    </div>
+</div>
+
+<!-- HOME -->
+<div id="home" class="screen">
+    <div class="title">Our Love Albums 📖💜</div>
+
+    <button class="menu-btn" onclick="openScreen('first')">First Memories</button>
+    <button class="menu-btn" onclick="openScreen('dates')">Dates Together</button>
+    <button class="menu-btn" onclick="openScreen('random')">Random Cute Pics</button>
+    <button class="menu-btn" onclick="openScreen('letter')">Read My Letter 💌</button>
+</div>
+
+<!-- ALBUMS -->
+<div id="first" class="screen">
+    <button class="back" onclick="openScreen('home')">Back</button>
+    <h2>First Memories</h2>
+    <div class="gallery">
+        <img src="pics/1.jpg">
+        <img src="pics/2.jpg">
+        <img src="pics/3.jpg">
+        <img src="pics/4.jpg">
+    </div>
+</div>
+
+<div id="dates" class="screen">
+    <button class="back" onclick="openScreen('home')">Back</button>
+    <h2>Dates Together</h2>
+    <div class="gallery">
+        <img src="pics/5.jpg">
+        <img src="pics/6.jpg">
+        <img src="pics/7.jpg">
+        <img src="pics/8.jpg">
+    </div>
+</div>
+
+<div id="random" class="screen">
+    <button class="back" onclick="openScreen('home')">Back</button>
+    <h2>Random Cute Pics</h2>
+    <div class="gallery">
+        <img src="pics/9.jpg">
+        <img src="pics/10.jpg">
+        <img src="pics/11.jpg">
+        <img src="pics/12.jpg">
+    </div>
+</div>
+
+<!-- LETTER -->
+<div id="letter" class="screen">
+    <button class="back" onclick="openScreen('home')">Back</button>
+    <h2>My Letter For You 💜</h2>
+    <div class="letter">
+        Happy Birthday, my love. 🎂💜<br><br>
+        Today is special because it’s the day someone very important to me was born...
+        <br><br>
+        I’m proud of you. I appreciate you. And I’m very, very thankful for you.
+        <br><br>
+        I love you, always.<br>
+        — Zai 💜
+    </div>
+</div>
+
+<div class="hearts">❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️ ❤️</div>
+
+<script>
+const music = document.getElementById("bgMusic");
+
+function checkPass(){
+    const p = document.getElementById("pass").value;
+    if(p === "iloveyou"){   // CHANGE PASSWORD HERE
+        music.play();
+        openScreen('home');
+    }else{
+        alert("Wrong password hehe 💔");
+    }
+}
+
+function openScreen(id){
+    document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+}
+</script>
+
+</body>
 </html>
+
